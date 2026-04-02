@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "---.slnx"
+    "dotnet.defaultSolution": "Команда «Зип-Зап».slnx"
 }
