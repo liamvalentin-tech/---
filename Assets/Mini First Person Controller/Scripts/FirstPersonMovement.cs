@@ -16,12 +16,23 @@ public class FirstPersonMovement : MonoBehaviour
     public GameObject StaminaBar;
     public GameObject StaminaBarBackground;
     public float Stamina = 500f;
+    
+    [SerializeField]
+    [Range(1f, 130f)]
     private float baseFOV = 60f;
-    private float sprintFOV = 90f;
-    private Camera cam;
-    private float fovTransitionTime;
-    private Coroutine changingFOV;
 
+    [SerializeField]
+    [Range(1f, 130f)]
+    private float sprintFOV = 90f;
+
+    [SerializeField]
+    private Camera cam;
+
+    [SerializeField]
+    [Range(0f, 10f)]
+    private float fovTransitionTime;
+
+    private Coroutine changingFOV;
 
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
@@ -60,6 +71,7 @@ public class FirstPersonMovement : MonoBehaviour
         // Update IsRunning from input.
         IsRunning = canRun && Input.GetKey(runningKey);
             StaminaBarThing();
+            DetectSprint();
         // Get targetMovingSpeed.
         float targetMovingSpeed = IsRunning ? runSpeed : speed;
         if (speedOverrides.Count > 0)
