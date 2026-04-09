@@ -16,6 +16,7 @@ public class FirstPersonMovement : MonoBehaviour
     public GameObject StaminaBar;
     public GameObject StaminaBarBackground;
     public float Stamina = 500f;
+    public GameObject ZoomIn;    
     
     [SerializeField]
     [Range(1f, 130f)]
@@ -42,11 +43,12 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if (IsRunning == true)
         {
-        
+            ZoomIn.SetActive(false);
             Stamina -= 80f * Time.deltaTime;
         }
         else
         {
+            ZoomIn.SetActive(true);
             Stamina += 40f * Time.deltaTime;
         }
         StaminaBar.transform.localScale = new Vector3(Stamina / 500f, 1, 1);
