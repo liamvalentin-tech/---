@@ -9,7 +9,6 @@ public class Shoot : MonoBehaviour
     public GameObject BulletPrefab;
     public GameObject GunBarrel;
     public float Cooldown = 0.5f;
-    public Animator recoilAnim;
 
     void Update()
     {
@@ -18,7 +17,6 @@ public class Shoot : MonoBehaviour
         if (canShoot)
             {
         IsShooting = canShoot && Input.GetKey(Shootbutton);
-            recoilAnim.SetTrigger("Recoil");
             GameObject bullet = Instantiate(BulletPrefab, GunBarrel.transform.position, GunBarrel.transform.rotation);
             canShoot = false;
             StartCoroutine(DelaySeconds(Cooldown));

@@ -525,6 +525,9 @@ MonoBehaviour:
   zoomFOV: 30
   camera: {fileID: 20437472682476688}
   fovTransitionTime: 0.5
+  Crosshair: {fileID: 0}
+  MoveLaser: {fileID: 0}
+  firstPersonMovement: {fileID: 0}
 --- !u!1 &8216336913829020518
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +541,6 @@ GameObject:
   - component: {fileID: 6904453525457162852}
   - component: {fileID: 1604786849125613868}
   - component: {fileID: 5838059547769773580}
-  - component: {fileID: 1032966032677483877}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -656,26 +658,4 @@ MonoBehaviour:
   BulletPrefab: {fileID: 6977056142303490937, guid: 5e560c69c969ebb4891f07d85964859e, type: 3}
   GunBarrel: {fileID: 3790548893521232323}
   Cooldown: 0.3
-  recoilAnim: {fileID: 1032966032677483877}
---- !u!95 &1032966032677483877
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8216336913829020518}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 16a1b8fbd44fd58439b614b0a779d9e5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  recoilAnim: {fileID: 0}

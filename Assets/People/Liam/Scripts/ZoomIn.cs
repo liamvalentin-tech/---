@@ -26,13 +26,18 @@ public class ZoomIn : MonoBehaviour
     private float fovTransitionTime;
 
     private Coroutine changingFOV;
+    public GameObject Crosshair;
+    public Animator MoveLaser;
 
-    void Start()
+    [SerializeField] private FirstPersonMovement firstPersonMovement;
+
+    void Update()
     {
+        firstPersonMovement.DetectAim(IsZooming);
         IsZooming = canZoom && Input.GetKey(ZoomButton);
         if (IsZooming)
         {
-            IsZooming = true;
+            Crosshair.SetActive(true);
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(zoomFOV, fovTransitionTime));
@@ -45,7 +50,7 @@ public class ZoomIn : MonoBehaviour
         }
         else
         {
-            IsZooming = false;
+            Crosshair.SetActive(false);
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
@@ -67,4 +72,5 @@ public class ZoomIn : MonoBehaviour
             yield return null;
         }
     }
+    
 }

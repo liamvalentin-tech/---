@@ -34,6 +34,8 @@ public class FirstPersonMovement : MonoBehaviour
     private float fovTransitionTime;
 
     private Coroutine changingFOV;
+    private Coroutine delaySeconds;
+    private float seconds = 3f;
 
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
@@ -41,12 +43,12 @@ public class FirstPersonMovement : MonoBehaviour
 
     void StaminaBarThing()
     {
-        if (IsRunning == true)
+        if (IsRunning == true && canRun == true)
         {
             ZoomIn.SetActive(false);
             Stamina -= 80f * Time.deltaTime;
         }
-        else
+        else if (Stamina < 500f)
         {
             ZoomIn.SetActive(true);
             Stamina += 40f * Time.deltaTime;
@@ -57,7 +59,7 @@ public class FirstPersonMovement : MonoBehaviour
         {
             canRun = false;
             StaminaBarBackground.SetActive(true);
-            StartCoroutine(DelaySeconds(3f));
+            delaySeconds = StartCoroutine(DelaySeconds(seconds));
         }
     }
     
@@ -98,7 +100,6 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if (IsRunning)
         {
-            IsRunning = true;
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(sprintFOV, fovTransitionTime));
@@ -111,7 +112,6 @@ public class FirstPersonMovement : MonoBehaviour
         }
         else
         {
-            IsRunning = false;
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
@@ -132,6 +132,20 @@ public class FirstPersonMovement : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newFOV, transitionTime * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    public void DetectAim(bool aiming){
+        if(aiming){
+            if (changingFOV != null)
+            {
+                StopCoroutine(changingFOV);
+                canRun = false;
+            }
+
+        }
+        else{
+            canRun = true;
         }
     }
 
