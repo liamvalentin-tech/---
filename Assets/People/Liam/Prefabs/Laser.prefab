@@ -44,7 +44,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 0.81960446, b: 0.5707547, a: 1}
+  m_Color: {r: 0, g: 0.99111605, b: 1, a: 1}
   m_Intensity: 220.64
   m_Range: 100
   m_SpotAngle: 30
@@ -243,8 +243,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.7276479, b: 0, a: 1}
-      key1: {r: 1, g: 0.9783717, b: 0, a: 0}
+      key0: {r: 0, g: 0.88579154, b: 1, a: 1}
+      key1: {r: 0, g: 1, b: 0.742964, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -327,7 +327,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 0.81960446, b: 0.5707547, a: 1}
+  m_Color: {r: 0, g: 0.5943396, b: 0.5836838, a: 1}
   m_Intensity: 220.64
   m_Range: 100
   m_SpotAngle: 30
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 6875612450712011327}
   - component: {fileID: 3234893804791126910}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Laser
   m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
