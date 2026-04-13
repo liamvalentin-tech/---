@@ -10,13 +10,15 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Running")]
     public bool canRun = true;
+    public bool SprintCooldown = false;
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
     public GameObject StaminaBar;
     public GameObject StaminaBarBackground;
     public float Stamina = 500f;
-    public GameObject ZoomIn;    
+    public GameObject ZoomIn;
+    public bool aiming = false;
     
     [SerializeField]
     [Range(1f, 130f)]
@@ -58,6 +60,7 @@ public class FirstPersonMovement : MonoBehaviour
         if (Stamina <= 0)
         {
             canRun = false;
+            SprintCooldown = true;
             StaminaBarBackground.SetActive(true);
             delaySeconds = StartCoroutine(DelaySeconds(seconds));
         }
@@ -95,10 +98,11 @@ public class FirstPersonMovement : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         StaminaBarBackground.SetActive(false);
         canRun = true;
+        SprintCooldown = false;
     }
     private void DetectSprint()
     {
-        if (IsRunning)
+        if (IsRunning && canRun && !aiming)
         {
             if (changingFOV == null)
             {
@@ -124,7 +128,7 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator LerpCamFOV(float newFOV, float transitionTime)
+    public IEnumerator LerpCamFOV(float newFOV, float transitionTime)
     {
         float elapsedTime = 0f;
         while (elapsedTime < transitionTime)
@@ -133,14 +137,16 @@ public class FirstPersonMovement : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        cam.fieldOfView = newFOV;
     }
 
-    public void DetectAim(bool aiming){
-        if(aiming){
+    public void DetectAim(bool aiming, float fov, float aimSpeed){
+        if(aiming && !IsRunning){
             if (changingFOV != null)
             {
                 StopCoroutine(changingFOV);
                 canRun = false;
+                changingFOV = StartCoroutine(LerpCamFOV(fov, aimSpeed));
             }
 
         }
