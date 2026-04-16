@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hittable
   - Laser
+  - Targettable
   layers:
   - Default
   - TransparentFX

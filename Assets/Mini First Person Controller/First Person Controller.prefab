@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23087463268523072}
   m_Layer: 0
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Targettable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 114963311885979670}
   - component: {fileID: 114497868231759342}
   - component: {fileID: 114762042097486276}
+  - component: {fileID: 4400912081788352511}
   m_Layer: 0
   m_Name: First Person Controller
   m_TagString: Player
@@ -402,12 +403,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   canRun: 1
+  SprintCooldown: 0
   runSpeed: 9
   runningKey: 304
   StaminaBar: {fileID: 0}
   StaminaBarBackground: {fileID: 0}
   Stamina: 500
   ZoomIn: {fileID: 7258329794379881072}
+  aiming: 0
   baseFOV: 60
   sprintFOV: 90
   cam: {fileID: 20437472682476688}
@@ -444,6 +447,26 @@ MonoBehaviour:
   headToLower: {fileID: 4490257326247362}
   crouchYHeadPosition: 1
   colliderToLower: {fileID: 136877096903737240}
+--- !u!114 &4400912081788352511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773623360729482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &3790548893521232323
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,12 +545,12 @@ MonoBehaviour:
   ZoomButton: 324
   canZoom: 1
   baseFOV: 60
-  zoomFOV: 30
+  zoomFOV: 10
   camera: {fileID: 20437472682476688}
-  fovTransitionTime: 0.5
+  fovTransitionTime: 10
   Crosshair: {fileID: 0}
-  MoveLaser: {fileID: 0}
-  firstPersonMovement: {fileID: 0}
+  MoveLaser: {fileID: 1706720812269040289}
+  firstPersonMovement: {fileID: 114963311885979670}
 --- !u!1 &8216336913829020518
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +564,7 @@ GameObject:
   - component: {fileID: 6904453525457162852}
   - component: {fileID: 1604786849125613868}
   - component: {fileID: 5838059547769773580}
+  - component: {fileID: 1706720812269040289}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -658,4 +682,25 @@ MonoBehaviour:
   BulletPrefab: {fileID: 6977056142303490937, guid: 5e560c69c969ebb4891f07d85964859e, type: 3}
   GunBarrel: {fileID: 3790548893521232323}
   Cooldown: 0.3
-  recoilAnim: {fileID: 0}
+--- !u!95 &1706720812269040289
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216336913829020518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16a1b8fbd44fd58439b614b0a779d9e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
