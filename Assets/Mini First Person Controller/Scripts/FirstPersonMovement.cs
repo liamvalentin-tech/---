@@ -151,7 +151,10 @@ public class FirstPersonMovement : MonoBehaviour
 
         }
         else{
-            canRun = true;
+            if (SprintCooldown == false) 
+            {
+                canRun = true;
+            }
         }
     }
 
