@@ -12,7 +12,6 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        curEnemyCount = maxEnemyCount;
         GameObject player = FindObjectOfType<FirstPersonMovement>().gameObject;
         target = player;
     }
@@ -28,10 +27,11 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if(curEnemyCount > 0)
+        if(curEnemyCount < maxEnemyCount)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             enemy.GetComponent<EnemyAI>().target = target;
+            curEnemyCount++;
         }
     }
 }
