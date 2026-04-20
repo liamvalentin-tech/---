@@ -10,13 +10,15 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Running")]
     public bool canRun = true;
+    public bool SprintCooldown = false;
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
     public GameObject StaminaBar;
     public GameObject StaminaBarBackground;
     public float Stamina = 500f;
-    public GameObject ZoomIn;    
+    public GameObject ZoomIn;
+    public bool aiming = false;
     
     [SerializeField]
     [Range(1f, 130f)]
@@ -34,6 +36,8 @@ public class FirstPersonMovement : MonoBehaviour
     private float fovTransitionTime;
 
     private Coroutine changingFOV;
+    private Coroutine delaySeconds;
+    private float seconds = 3f;
 
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
@@ -41,12 +45,12 @@ public class FirstPersonMovement : MonoBehaviour
 
     void StaminaBarThing()
     {
-        if (IsRunning == true)
+        if (IsRunning == true && canRun == true)
         {
             ZoomIn.SetActive(false);
             Stamina -= 80f * Time.deltaTime;
         }
-        else
+        else if (Stamina < 500f)
         {
             ZoomIn.SetActive(true);
             Stamina += 40f * Time.deltaTime;
@@ -56,8 +60,9 @@ public class FirstPersonMovement : MonoBehaviour
         if (Stamina <= 0)
         {
             canRun = false;
+            SprintCooldown = true;
             StaminaBarBackground.SetActive(true);
-            StartCoroutine(DelaySeconds(3f));
+            delaySeconds = StartCoroutine(DelaySeconds(seconds));
         }
     }
     
@@ -93,12 +98,12 @@ public class FirstPersonMovement : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         StaminaBarBackground.SetActive(false);
         canRun = true;
+        SprintCooldown = false;
     }
     private void DetectSprint()
     {
-        if (IsRunning)
+        if (IsRunning && canRun && !aiming)
         {
-            IsRunning = true;
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(sprintFOV, fovTransitionTime));
@@ -111,7 +116,6 @@ public class FirstPersonMovement : MonoBehaviour
         }
         else
         {
-            IsRunning = false;
             if (changingFOV == null)
             {
                 changingFOV = StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
@@ -124,7 +128,7 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator LerpCamFOV(float newFOV, float transitionTime)
+    public IEnumerator LerpCamFOV(float newFOV, float transitionTime)
     {
         float elapsedTime = 0f;
         while (elapsedTime < transitionTime)
@@ -132,6 +136,25 @@ public class FirstPersonMovement : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newFOV, transitionTime * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+        cam.fieldOfView = newFOV;
+    }
+
+    public void DetectAim(bool aiming, float fov, float aimSpeed){
+        if(aiming && !IsRunning){
+            if (changingFOV != null)
+            {
+                StopCoroutine(changingFOV);
+                canRun = false;
+                changingFOV = StartCoroutine(LerpCamFOV(fov, aimSpeed));
+            }
+
+        }
+        else{
+            if (SprintCooldown == false) 
+            {
+                canRun = true;
+            }
         }
     }
 

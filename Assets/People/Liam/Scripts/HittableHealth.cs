@@ -9,9 +9,11 @@ public class HittableHealth : MonoBehaviour
     void Update()
     {
         if (health <= 0f)
-        {
-            Destroy(gameObject);
-            GameObject deathEffect = Instantiate(DeathEffect, transform.position, transform.rotation);
+        { Death();
         }
+    }
+    public virtual void Death(){
+         Destroy(gameObject);
+        GameObject deathEffect = Instantiate(DeathEffect, transform.position, transform.rotation);
     }
 }

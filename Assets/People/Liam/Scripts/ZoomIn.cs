@@ -25,39 +25,42 @@ public class ZoomIn : MonoBehaviour
     [Range(0f, 10f)]
     private float fovTransitionTime;
 
-    private Coroutine changingFOV;
+    public GameObject Crosshair;
+    public Animator MoveLaser;
 
-    void Start()
-    {
+    [SerializeField] private FirstPersonMovement firstPersonMovement;
+    void Update()
+    {   
+        firstPersonMovement.DetectAim(IsZooming, zoomFOV, fovTransitionTime);
         IsZooming = canZoom && Input.GetKey(ZoomButton);
         if (IsZooming)
         {
-            IsZooming = true;
-            if (changingFOV == null)
+            Crosshair.SetActive(true);
+            /*if (checkLerp == null)
             {
-                changingFOV = StartCoroutine(LerpCamFOV(zoomFOV, fovTransitionTime));
+                firstPersonMovement.changingFOV = firstPersonMovement.StartCoroutine(LerpCamFOV(zoomFOV, fovTransitionTime));
             }
             else
             {
-                StopCoroutine(changingFOV);
-                changingFOV = StartCoroutine(LerpCamFOV(zoomFOV, fovTransitionTime));
-            }
+                firstPersonMovement.StopCoroutine(firstPersonMovement.changingFOV);
+                firstPersonMovement.changingFOV = firstPersonMovement.StartCoroutine(LerpCamFOV(zoomFOV, fovTransitionTime));
+            } */
         }
         else
         {
-            IsZooming = false;
-            if (changingFOV == null)
+            Crosshair.SetActive(false);
+            /*if (checkLerp == null)
             {
-                changingFOV = StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
+                firstPersonMovement.changingFOV = firstPersonMovement.StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
             }
             else
             {
-                StopCoroutine(changingFOV);
-                changingFOV = StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
-            }
+                firstPersonMovement.StopCoroutine(firstPersonMovement.changingFOV);
+                firstPersonMovement.changingFOV = firstPersonMovement.StartCoroutine(LerpCamFOV(baseFOV, fovTransitionTime));
+            } */
         }
     }
-    private IEnumerator LerpCamFOV(float newFOV, float transitionTime)
+    /*private IEnumerator LerpCamFOV(float newFOV, float transitionTime)
     {
         float elapsedTime = 0f;
         while (elapsedTime < transitionTime)
@@ -66,5 +69,6 @@ public class ZoomIn : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-    }
+    }*/
+    
 }
