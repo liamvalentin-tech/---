@@ -5,7 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_/Base/GameScene_Base.unity
     guid: 7b983534fcd6adb4d8ec50e55837c14a
+  - enabled: 1
+    path: Assets/People/MrHajj/MrHajj.unity
+    guid: 3a10cfe1f08cddc42aa3e69cb28f6993
+  - enabled: 1
+    path: Assets/People/Jiomaris/Jiomaris.unity
+    guid: 248668b348224b24b9069c4aced4438b
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
