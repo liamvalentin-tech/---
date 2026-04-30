@@ -56,7 +56,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6278811737484548647, guid: 7446210feef79424593c668a836ef7c3, type: 3}
       propertyPath: m_Name
-      value: Attacking Monster
+      value: Alien
       objectReference: {fileID: 0}
     - target: {fileID: 6278811737484548647, guid: 7446210feef79424593c668a836ef7c3, type: 3}
       propertyPath: m_TagString
@@ -191,18 +191,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54b4f2e9b9228b44bdd3a63358f5e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  DeathEffect: {fileID: 0}
-  health: 100
   target: {fileID: 1773623360729482, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
   ChaseAnim: {fileID: 2838128192544883331}
   spawner: {fileID: 0}
   PlayerMaxDistance: 10
   PlayerDistance: 0
-  PlayerMinDistance: 2
+  PlayerMinDistance: 1.5
   Wandering: 0
   Chasing: 0
+  Attack: 0
   WanderRadius: 10
-  WanderTimer: 5
+  WanderTimer: 1.5
 --- !u!54 &269666299992331740
 Rigidbody:
   m_ObjectHideFlags: 0

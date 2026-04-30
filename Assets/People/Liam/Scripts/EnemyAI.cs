@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : HittableHealth
+public class EnemyAI : MonoBehaviour
 {
     public GameObject target; // Drag your player object here in Inspector
     private NavMeshAgent agent;
@@ -12,12 +12,13 @@ public class EnemyAI : HittableHealth
     public float PlayerMinDistance = 1f;
     public bool Wandering = false;
     public bool Chasing = false;
+    public bool Attack = false;
     public float WanderRadius = 10f;
     public float WanderTimer = 5f;
-    public bool Attack = false;
+    public float speed;
 
     void Start(){
-
+        target = GameObject.FindGameObjectWithTag("Targettable");
          agent = GetComponent<NavMeshAgent>();
     }
 
@@ -28,11 +29,23 @@ public class EnemyAI : HittableHealth
         PlayerDistance = Vector3.Distance(transform.position, target.transform.position);
         if (target != null && PlayerDistance < PlayerMaxDistance) 
         {
-            agent.SetDestination(target.transform.position);
-            ChaseAnim.SetTrigger("Chase");
-            Wandering = false;
-            Chasing = true;
-            Attack = false;
+            if (PlayerDistance <= PlayerMinDistance) {
+                //agent.SetDestination(transform.position);
+                //transform.LookAt(target.transform, Vector3.forward);
+                agent.
+                ChaseAnim.SetTrigger("Attack");
+                Attack = true;
+                Wandering = false;
+                Chasing = false;
+            }
+            else
+            {
+                ChaseAnim.SetTrigger("Chase");
+                Attack = false;
+                Chasing = true;
+                Wandering = false;
+                agent.SetDestination(target.transform.position);
+            }
         }
         else
         {
@@ -40,6 +53,7 @@ public class EnemyAI : HittableHealth
             ChaseAnim.SetTrigger("Wander");
             Wandering = true;
             Chasing = false;
+            Attack = false;
             Vector3 newPos = RandomNavMeshLocation(WanderRadius);
             agent.SetDestination(newPos);
             WanderTimer = 5f;
@@ -60,10 +74,5 @@ public class EnemyAI : HittableHealth
             finalPosition = hit.position;
         }
         return finalPosition;
-    }
-
-    public override void Death()
-    {
-        base.Death();
     }
 }
