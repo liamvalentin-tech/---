@@ -32,15 +32,15 @@ public class EnemyAI : MonoBehaviour
             if (PlayerDistance <= PlayerMinDistance) {
                 //agent.SetDestination(transform.position);
                 //transform.LookAt(target.transform, Vector3.forward);
-                agent.
-                ChaseAnim.SetTrigger("Attack");
+                //agent.
+                //ChaseAnim.SetTrigger("Attack");
                 Attack = true;
                 Wandering = false;
                 Chasing = false;
             }
             else
             {
-                ChaseAnim.SetTrigger("Chase");
+                //ChaseAnim.SetTrigger("Chase");
                 Attack = false;
                 Chasing = true;
                 Wandering = false;
@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
        if (WanderTimer <= 0) {
-            ChaseAnim.SetTrigger("Wander");
+            //ChaseAnim.SetTrigger("Wander");
             Wandering = true;
             Chasing = false;
             Attack = false;
