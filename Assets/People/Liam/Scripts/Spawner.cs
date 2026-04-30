@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
         if(curEnemyCount < maxEnemyCount)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            enemy.GetComponent<EnemyAI>().target = target;
+            enemy.GetComponent<EnemyAI>().baseTarget = target;
             curEnemyCount++;
         }
     }
