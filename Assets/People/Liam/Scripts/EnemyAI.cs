@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject target; // Drag your player object here in Inspector
+    public GameObject baseTarget; // Drag your player object here in Inspector
+    private GameObject currentTarget;
     private NavMeshAgent agent;
     public Animator ChaseAnim;
     [HideInInspector] public Spawner spawner;
@@ -18,20 +19,23 @@ public class EnemyAI : MonoBehaviour
     public float speed;
 
     void Start(){
-        target = GameObject.FindGameObjectWithTag("Targettable");
+        baseTarget = GameObject.FindGameObjectWithTag("Targettable");
+        UpdateTarget(baseTarget);
          agent = GetComponent<NavMeshAgent>();
     }
-
+    public void UpdateTarget(GameObject newTarget){
+        currentTarget = newTarget;
+    }
     void Update() 
     {
         WanderTimer -= Time.deltaTime;
         // Continuously set the enemy's destination to the player's position
-        PlayerDistance = Vector3.Distance(transform.position, target.transform.position);
-        if (target != null && PlayerDistance < PlayerMaxDistance) 
+        PlayerDistance = Vector3.Distance(transform.position, baseTarget.transform.position);
+        if (currentTarget != null && PlayerDistance < PlayerMaxDistance) 
         {
             if (PlayerDistance <= PlayerMinDistance) {
                 //agent.SetDestination(transform.position);
-                //transform.LookAt(target.transform, Vector3.forward);
+                //transform.LookAt(currentTarget.transform, Vector3.forward);
                 //agent.
                 //ChaseAnim.SetTrigger("Attack");
                 Attack = true;
@@ -44,7 +48,7 @@ public class EnemyAI : MonoBehaviour
                 Attack = false;
                 Chasing = true;
                 Wandering = false;
-                agent.SetDestination(target.transform.position);
+                agent.SetDestination(currentTarget.transform.position);
             }
         }
         else

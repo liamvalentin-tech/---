@@ -6,7 +6,7 @@ public class HittableHealth : MonoBehaviour
 {
     public GameObject DeathEffect;
     public float health = 100f;
-    void Update()
+    public virtual void Update()
     {
         if (health <= 0f)
         { Death();
