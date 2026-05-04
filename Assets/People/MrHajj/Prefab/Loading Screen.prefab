@@ -565,4 +565,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AsyncSceneLoading
   LoadingBarFill: {fileID: 689906203786237521}
   LoadingScreen: {fileID: 1825912579188573559}
-  scene_name: 
+  scene_name: []
