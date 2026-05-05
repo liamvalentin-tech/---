@@ -11,10 +11,14 @@ public class AsyncSceneLoading : MonoBehaviour
     public string[] scene_name;
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        Debug.Log(other.gameObject.name);
+        if(other.CompareTag("Player") && LoadingBarFill != null && LoadingScreen != null)
         {
         LoadingScreen.SetActive(true);
            LoadScene(scene_name[0]);
+        }
+        else{
+            SceneManager.LoadScene(scene_name[0]);
         }
 
         
