@@ -133,11 +133,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 269666299992331740, guid: 80b9c51d87870854db98a430f7e19055, type: 3}
+    - target: {fileID: 269666299992331740, guid: 80b9c51d87870854db98a430f7e19055,
+        type: 3}
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 2371628924319239014, guid: 80b9c51d87870854db98a430f7e19055, type: 3}
+    - target: {fileID: 2371628924319239014, guid: 80b9c51d87870854db98a430f7e19055,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.684286
       objectReference: {fileID: 0}
@@ -186,7 +188,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3144189136565916124, guid: 80b9c51d87870854db98a430f7e19055, type: 3}
+    - target: {fileID: 3144189136565916124, guid: 80b9c51d87870854db98a430f7e19055,
+        type: 3}
       propertyPath: m_Name
       value: Alien
       objectReference: {fileID: 0}
@@ -975,7 +978,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Destructible Box
       objectReference: {fileID: 0}
-    - target: {fileID: 5483119005369297297, guid: 7821a9e49e0d88a4d9936a233b0cd334, type: 3}
+    - target: {fileID: 5483119005369297297, guid: 7821a9e49e0d88a4d9936a233b0cd334,
+        type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
